@@ -16,7 +16,11 @@
     "test:watch": "vitest",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish"
+    "release": "changeset version && pnpm build && changeset publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dennis273/mem-tool.git"
   },
   "dependencies": {
     "ink": "^6.0.0",
