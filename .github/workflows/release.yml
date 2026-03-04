@@ -34,7 +34,14 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Publish to npm
+      - name: Publish to npm (token fallback for first publish)
+        if: ${{ secrets.NPM_TOKEN != '' }}
+        run: pnpm changeset publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to npm (OIDC)
+        if: ${{ secrets.NPM_TOKEN == '' }}
         run: pnpm changeset publish
 
       - name: Commit & push version bump
